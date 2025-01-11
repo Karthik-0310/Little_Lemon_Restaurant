@@ -1,0 +1,96 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  color: white;
+  padding: 1rem;
+  transition: background-image 1s ease-in-out; /* Smooth transition */
+}
+
+/* Hero Title */
+.hero-title {
+  font-size: 6rem; /* Adjust size as needed */
+  font-weight: bold;
+  margin-bottom: 3rem; /* Add some space between the title and button */
+}
+
+/* Button */
+.hero-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #fbbf24; /* Tailwind yellow-400 */
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #f59e0b; /* Tailwind yellow-500 */
+}
+
+
+.hero-bg-1 {
+  background-image: url("./images/landingbg1.jpg");
+}
+
+.hero-bg-2 {
+  background-image: url("./images/landingbg2.jpg");
+}
+
+.hero-bg-3 {
+  background-image: url("./images/landingbg3.jpg");
+}
+
+/* Main Content */
+.main-content {
+  padding: 2rem 1rem;
+  background-color: #f8f9fa; /* Light background color for contrast */
+}
