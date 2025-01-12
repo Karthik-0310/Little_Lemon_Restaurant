@@ -27,11 +27,17 @@ const Login = () => {
                 }
             });
 
-            // Check if the response has the expected data structure
-            if (response.data && response.data.user && response.data.user.id) {
-                // On success, save user id to local storage and redirect to Menu
-                localStorage.setItem('userId', response.data.user.id);
-                navigate("/menu"); // Redirect to Menu.js page using navigate
+            // Check if the response contains the expected data
+            if (response.data && response.data.user && response.data.user.userId && response.data.authToken) {
+                // On success, store the auth token and user id in localStorage
+                localStorage.setItem('authToken', response.data.authToken);  // Store the JWT token
+                localStorage.setItem('userId', response.data.user.userId);  // Store the userId
+
+                // Redirect to the Menu page
+                navigate("/menu");
+
+                // Refresh the page after successful login
+                window.location.reload();  // Forces a page reload to reflect login status
             } else {
                 setError("Unexpected response format from server.");
             }

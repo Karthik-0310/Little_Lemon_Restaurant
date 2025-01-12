@@ -1,27 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './CSS/Home.css'; // You can create specific styles for Home page if needed
-import Login from "./Login";
+import { useNavigate } from 'react-router-dom';
+import './CSS/Home.css'; // Styles for Home page if needed
 
 function Home() {
-    // Array of background image classes
     const backgroundClasses = [
         'hero-bg-1',
         'hero-bg-2',
         'hero-bg-3',
     ];
 
-    // Set the initial background index
     const [currentBackground, setCurrentBackground] = useState(0);
+    const navigate = useNavigate(); // Hook for navigation
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentBackground((prevIndex) => (prevIndex + 1) % backgroundClasses.length);
-        }, 3000); // Change every 3 seconds
+        }, 3000);
 
-        // Cleanup interval when component unmounts
-        return () => clearInterval(interval);
+        return () => clearInterval(interval); // Cleanup interval on unmount
     }, []);
+
+    const handleBookNowClick = () => {
+        const authToken = localStorage.getItem('authToken'); // Check for token in localStorage
+
+        if (authToken) {
+            navigate('/Menu'); // Navigate to Menu if authenticated
+        } else {
+            navigate('/Login'); // Navigate to Login if not authenticated
+        }
+    };
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-100">
@@ -31,14 +38,12 @@ function Home() {
                 <h1 className="hero-title text-white text-[3rem] sm:text-[3rem] md:text-[4rem] lg:text-[5rem] xl:text-[5rem] font-bold mb-6 px-4 sm:px-8 leading-snug sm:leading-normal">
                     Welcome to Little Lemon
                 </h1>
-                <Link to="/Login">
                 <button
-                    type="submit"
+                    onClick={handleBookNowClick} // Add click handler
                     className="px-4 py-2 sm:px-6 sm:py-3 bg-yellow-500 text-white text-base sm:text-xl font-semibold rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300"
                 >
                     Book Now!
                 </button>
-                </Link>
             </section>
 
             {/* Main Content */}

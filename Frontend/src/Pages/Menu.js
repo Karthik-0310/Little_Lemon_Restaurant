@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
+    const navigate = useNavigate();
+
+    // Check if user is logged in
+    useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            // Redirect to login if not authenticated
+            navigate('/login');
+        }
+    }, [navigate]);
+
     const menuItems = [
         {
             name: "Spaghetti Carbonara",

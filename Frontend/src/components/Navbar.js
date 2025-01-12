@@ -1,6 +1,7 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { ShoppingCartIcon } from '@heroicons/react/24/solid'; // Import cart icon from Heroicons v2
+import React, { useState, useEffect } from 'react';
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 
 const navigation = [
     { name: 'Little Lemon', href: '/', current: true },
@@ -8,19 +9,59 @@ const navigation = [
     { name: 'Cuisines', href: '#', current: false },
     { name: 'Careers', href: '#', current: false },
     { name: 'About', href: '#', current: false },
-]
+];
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(' ');
 }
 
 export default function Navbar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        // Function to check login status in localStorage
+        const checkLoginStatus = () => {
+            const userId = localStorage.getItem('userId');
+            setIsLoggedIn(userId !== null);
+        };
+
+        // Check login status when the component mounts
+        checkLoginStatus();
+
+        // Listen for changes in localStorage
+        const handleStorageChange = (event) => {
+            if (event.key === 'userId') {
+                checkLoginStatus();
+            }
+        };
+
+        // Attach the event listener
+        window.addEventListener('storage', handleStorageChange);
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []); // Run once when the component mounts
+
+    const handleLogin = () => {
+        localStorage.setItem('userId', 'some-unique-id'); // Example userId
+        localStorage.setItem('authToken', 'some-auth-token'); // Example auth token
+        setIsLoggedIn(true); // Update state immediately after login
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('userId');
+        localStorage.removeItem('authToken');
+        setIsLoggedIn(false); // Update state to reflect logout
+        window.location.href = '/'; // Redirect to home page
+    };
+
     return (
         <Disclosure as="nav" className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                        {/* Mobile menu button */}
                         <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Open main menu</span>
@@ -32,8 +73,8 @@ export default function Navbar() {
                         <div className="flex shrink-0 items-center">
                             <img
                                 alt="Little Lemon"
-                                src="/images/littlelemonlogo.jpg"  // Reference the image directly using its path relative to the public folder
-                                className="h-8 w-auto rounded-full"  // Add rounded-full for rounded edges
+                                src="/images/littlelemonlogo.jpg"
+                                className="h-8 w-auto rounded-full"
                             />
                         </div>
                         <div className="hidden sm:ml-6 sm:block">
@@ -56,8 +97,6 @@ export default function Navbar() {
                     </div>
                     <div
                         className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
-                        {/* Cart Button */}
                         <button
                             type="button"
                             className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -100,14 +139,26 @@ export default function Navbar() {
                                         Orders
                                     </a>
                                 </MenuItem>
-                                <MenuItem>
-                                    <a
-                                        href="/Login"
-                                        className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
-                                    >
-                                        Log In
-                                    </a>
-                                </MenuItem>
+                                {isLoggedIn ? (
+                                    <MenuItem>
+                                        <a
+                                            href="#"
+                                            onClick={handleLogout}
+                                            className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+                                        >
+                                            Log Out
+                                        </a>
+                                    </MenuItem>
+                                ) : (
+                                    <MenuItem>
+                                        <a
+                                            href="/login"
+                                            className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+                                        >
+                                            Log In
+                                        </a>
+                                    </MenuItem>
+                                )}
                             </MenuItems>
                         </Menu>
                     </div>
@@ -133,5 +184,5 @@ export default function Navbar() {
                 </div>
             </DisclosurePanel>
         </Disclosure>
-    )
+    );
 }
