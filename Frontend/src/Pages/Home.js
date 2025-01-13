@@ -20,7 +20,7 @@ function Home() {
         return () => clearInterval(interval); // Cleanup interval on unmount
     }, []);
 
-    const handleBookNowClick = () => {
+    const handleOrderNowClick = () => {
         const authToken = localStorage.getItem('authToken'); // Check for token in localStorage
 
         if (authToken) {
@@ -39,10 +39,10 @@ function Home() {
                     Welcome to Little Lemon
                 </h1>
                 <button
-                    onClick={handleBookNowClick} // Add click handler
+                    onClick={handleOrderNowClick} // Add click handler
                     className="px-4 py-2 sm:px-6 sm:py-3 bg-yellow-500 text-white text-base sm:text-xl font-semibold rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300"
                 >
-                    Book Now!
+                    Order Now!
                 </button>
             </section>
 
