@@ -8,3 +8,21 @@
 .btn-blue:hover {
     @apply bg-blue-700;
 }
+
+.menu-container-1 {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 50vh;
+}
+
+.menu-background-1 {
+    background-image: url("../../../public/images/landingbg1.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+}
+
+.menu-text-1{
+    margin-right:20px;
+    margin-left: 20px;
+}

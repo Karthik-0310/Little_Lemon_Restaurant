@@ -31,15 +31,15 @@
 }
 
 .hero-bg-1 {
-    background-image: url("../../images/landingbg1.jpg");
+    background-image: url("../../../public/images/landingbg1.jpg");
 }
 
 .hero-bg-2 {
-    background-image: url("../../images/landingbg2.jpg");
+    background-image: url("../../../public/images/landingbg2.jpg");
 }
 
 .hero-bg-3 {
-    background-image: url("../../images/landingbg3.jpg");
+    background-image: url("../../../public/images/landingbg3.jpg");
 }
 
 /* Main Content */

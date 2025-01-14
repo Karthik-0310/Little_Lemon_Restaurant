@@ -37,7 +37,7 @@ const Login = () => {
                 navigate("/menu");
 
                 // Refresh the page after successful login
-                window.location.reload();  // Forces a page reload to reflect login status
+                window.location.reload();
             } else {
                 setError("Unexpected response format from server.");
             }
