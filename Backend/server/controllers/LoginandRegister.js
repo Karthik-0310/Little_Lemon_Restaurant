@@ -162,54 +162,5 @@ const loginUser = async (req, res) => {
     }
 };
 
-
-
-// const loginUser = async (req, res) => {
-//     const { email, password } = req.body;
-//
-//     // Basic validation
-//     if (!email || !password) {
-//         return res.status(400).json({ message: "Email and password are required" });
-//     }
-//
-//     try {
-//         // Find the login credentials by email from Login_Credentials collection
-//         const loginCredentials = await LoginCredentials.findOne({ email });
-//         if (!loginCredentials) {
-//             return res.status(400).json({ message: "User not found in Login_Credentials" });
-//         }
-//
-//         // Check if the password matches the hashed password
-//         const isPasswordValid = await bcrypt.compare(password, loginCredentials.password);
-//         if (!isPasswordValid) {
-//             return res.status(400).json({ message: "Invalid credentials" });
-//         }
-//
-//         // Find the user details from Users collection based on email
-//         const user = await User.findOne({ email }).select('-password');  // Exclude password from response
-//         if (!user) {
-//             return res.status(400).json({ message: "User not found in Users collection" });
-//         }
-//
-//         // Respond with user details (from Users collection) if login is successful
-//         res.status(200).json({
-//             message: "Login successful",
-//             user: {
-//                 id: user._id,
-//                 userId: user.userId,  // Return the userId
-//                 fullName: user.fullName,
-//                 email: user.email,
-//                 address: user.address,
-//                 city: user.city,
-//                 country: user.country,
-//                 state: user.state,
-//                 zipcode: user.zipcode
-//             },
-//         });
-//     } catch (err) {
-//         res.status(500).json({ message: "Error logging in", error: err.message });
-//     }
-// };
-
 // Export the functions for use in routes
 module.exports = { registerUser, loginUser };

@@ -24,7 +24,7 @@ function Home() {
         const authToken = localStorage.getItem('authToken'); // Check for token in localStorage
 
         if (authToken) {
-            navigate('/Menu'); // Navigate to Menu if authenticated
+            navigate('/Cuisines'); // Navigate to Cuisines if authenticated
         } else {
             navigate('/Login'); // Navigate to Login if not authenticated
         }

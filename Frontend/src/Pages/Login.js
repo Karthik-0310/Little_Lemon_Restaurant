@@ -33,7 +33,7 @@ const Login = () => {
                 localStorage.setItem('authToken', response.data.authToken);  // Store the JWT token
                 localStorage.setItem('userId', response.data.user.userId);  // Store the userId
 
-                // Redirect to the Menu page
+                // Redirect to the Cuisines page
                 navigate("/menu");
 
                 // Refresh the page after successful login

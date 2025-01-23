@@ -5,8 +5,9 @@ import Footer from './components/Footer';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import RegisterUser from './Pages/Registeruser';
+import Cuisines from './Pages/Cuisines';
+import ProtectedRoute from './Utils/ProtectedRoute';
 import Menu from './Pages/Menu';
-import ProtectedRoute from './Utils/ProtectedRoute'; // Import ProtectedRoute
 
 function App() {
     return (
@@ -22,7 +23,15 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<RegisterUser />} />
                         <Route
-                            path="/menu"
+                            path="/Cuisines"
+                            element={
+                                <ProtectedRoute>
+                                    <Cuisines />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/Menu"
                             element={
                                 <ProtectedRoute>
                                     <Menu />
