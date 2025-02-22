@@ -8,10 +8,10 @@ import RegisterUser from './Pages/Registeruser';
 import Cuisines from './Pages/Cuisines';
 import ProtectedRoute from './Utils/ProtectedRoute';
 import Menu from './Pages/Menu';
+import Cart from "./Pages/Cart";
 
 function App() {
     return (
-        <Router>
             <div className="flex flex-col min-h-screen">
                 {/* Navbar */}
                 <Navbar />
@@ -38,13 +38,20 @@ function App() {
                                 </ProtectedRoute>
                             }
                         />
+                        <Route
+                            path="/cart"
+                            element={
+                                <ProtectedRoute>
+                                    <Cart />
+                                </ProtectedRoute>
+                            }
+                        />
                     </Routes>
                 </main>
 
                 {/* Footer */}
                 <Footer />
             </div>
-        </Router>
     );
 }
 

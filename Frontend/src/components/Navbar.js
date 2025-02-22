@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
+import { Link } from "react-router-dom";
 
 const navigation = [
     { name: 'Little Lemon', href: '/', current: true },
@@ -97,6 +98,7 @@ export default function Navbar() {
                     </div>
                     <div
                         className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        <Link to="/cart">
                         <button
                             type="button"
                             className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -105,6 +107,7 @@ export default function Navbar() {
                             <span className="sr-only">View cart</span>
                             <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
+                        </Link>
 
                         {/* Profile dropdown */}
                         <Menu as="div" className="relative ml-3">
