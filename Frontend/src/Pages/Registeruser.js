@@ -7,7 +7,9 @@ const RegisterUser = () => {
 
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState(""); // to store validation message
     const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -103,7 +105,14 @@ const RegisterUser = () => {
                                             id="full_name"
                                             className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                             value={fullName}
-                                            onChange={(e) => setFullName(e.target.value)}
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                // Only allow letters and spaces
+                                                if (/^[a-zA-Z\s]*$/.test(value)) {
+                                                    setFullName(value);
+                                                }
+                                            }}
+                                            placeholder="Enter your full name"
                                         />
                                     </div>
 
@@ -116,9 +125,22 @@ const RegisterUser = () => {
                                             id="email"
                                             className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                             value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setEmail(value);
+
+                                                // Real-time validation
+                                                if (value && !validateEmail(value)) {
+                                                    setEmailError("Please enter a valid email address");
+                                                } else {
+                                                    setEmailError(""); // clear error if valid
+                                                }
+                                            }}
                                             placeholder="email@domain.com"
                                         />
+                                        {emailError && (
+                                            <p className="text-orange-500 text-sm mt-1">{emailError}</p>
+                                        )}
                                     </div>
 
                                     {/*Password*/}
@@ -143,10 +165,17 @@ const RegisterUser = () => {
                                             name="confirmPassword"
                                             id="confirmPassword"
                                             className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                                            value={confirmPassword} // Correct state binding
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            value={confirmPassword}
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setConfirmPassword(value);
+                                                setPasswordError(value !== password ? "Passwords do not match" : "");
+                                            }}
                                             placeholder="Confirm Password"
                                         />
+                                        {confirmPassword.length > 0 && passwordError && (
+                                            <p className="text-orange-500 text-sm mt-1">{passwordError}</p>
+                                        )}
                                     </div>
 
                                     {/* Address */}
@@ -158,6 +187,7 @@ const RegisterUser = () => {
                                             id="address"
                                             className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                             value={address}
+                                            placeholder="Enter full street address"
                                             onChange={(e) => setAddress(e.target.value)}
                                         />
                                     </div>
@@ -171,6 +201,7 @@ const RegisterUser = () => {
                                             id="city"
                                             className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                             value={city}
+                                            placeholder="City"
                                             onChange={(e) => setCity(e.target.value)}
                                         />
                                     </div>
@@ -184,6 +215,7 @@ const RegisterUser = () => {
                                             id="country"
                                             className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                             value={country}
+                                            placeholder="Country"
                                             onChange={(e) => setCountry(e.target.value)}
                                         />
                                     </div>
@@ -197,6 +229,7 @@ const RegisterUser = () => {
                                             id="state"
                                             className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                             value={state}
+                                            placeholder="State"
                                             onChange={(e) => setState(e.target.value)}
                                         />
                                     </div>
@@ -210,6 +243,7 @@ const RegisterUser = () => {
                                             id="zipcode"
                                             className="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                             value={zipcode}
+                                            placeholder="5 Digit ZipCode"
                                             onChange={(e) => setZipcode(e.target.value)}
                                         />
                                     </div>

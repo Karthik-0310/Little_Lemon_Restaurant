@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "../CartContext";
+import { useLocation } from 'react-router-dom';
 
 const Menu = () => {
     // State to store menu items
@@ -7,6 +8,9 @@ const Menu = () => {
 
     // State for loading state
     const [loading, setLoading] = useState(true);
+
+    const location = useLocation();
+    const cuisine = location.state?.cuisine || 'All'; // fallback to All if no state
 
     // State for error handling
     const [error, setError] = useState(null);
@@ -16,6 +20,8 @@ const Menu = () => {
     const itemsPerPage = 10;
 
     const { addToCart, cartItems, incrementQuantity, decrementQuantity } = useCart();
+
+
 
     // Fetch menu items from API
     useEffect(() => {

@@ -5,9 +5,20 @@ import './CSS/Cuisines.css';
 const Cuisines = () => {
     const navigate = useNavigate();
 
-    const onOrderNowClick = () =>{
-        navigate('/Menu');
-    }
+    const onOrderNowClickIndian = () => {
+        navigate('/Menu', { state: { cuisine: 'Indian' } });
+    };
+    const onOrderNowClickItalian = () => {
+        navigate('/Menu', { state: { cuisine: 'Italian' } });
+    };
+
+    const onOrderNowClickAmerican = () => {
+        navigate('/Menu', { state: { cuisine: 'American' } });
+    };
+    const onOrderNowClickMexican = () => {
+        navigate('/Menu', {state: {cuisine: 'Mexican'}});
+    };
+
 
     // Check if user is logged in
     useEffect(() => {
@@ -39,7 +50,7 @@ const Cuisines = () => {
                         Experience Authentic Indian Flavors Order Now!
                     </h1>
                     <button
-                        onClick={onOrderNowClick}
+                        onClick={onOrderNowClickIndian}
                         className="px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-yellow-500 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300">
                         Order Now!
                     </button>
@@ -53,7 +64,7 @@ const Cuisines = () => {
                         Indulge in Classic Italian Dishes Order Your Favorite Today!
                     </h1>
                     <button
-                        onClick={onOrderNowClick}
+                        onClick={onOrderNowClickItalian}
                         className="px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-yellow-500 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300">
                         Order Now!
                     </button>
@@ -75,7 +86,7 @@ const Cuisines = () => {
                         From Coast to Coast – Experience the Best of American Cuisine!
                     </h1>
                     <button
-                        onClick={onOrderNowClick}
+                        onClick={onOrderNowClickAmerican}
                         className="px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-yellow-500 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300">
                         Order Now!
                     </button>
@@ -89,7 +100,7 @@ const Cuisines = () => {
                         Taste the Fiesta – Bold, Flavorful Mexican Dishes!
                     </h1>
                     <button
-                        onClick={onOrderNowClick}
+                        onClick={onOrderNowClickMexican}
                         className="px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-yellow-500 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-lg hover:bg-yellow-400 transition duration-300">
                         Order Now!
                     </button>
