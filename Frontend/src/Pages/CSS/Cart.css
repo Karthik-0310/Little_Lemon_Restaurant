@@ -1,0 +1,13 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-button {
+    font-size: 20px;
+    height: 60px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+}

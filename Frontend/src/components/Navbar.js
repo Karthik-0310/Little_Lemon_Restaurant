@@ -3,6 +3,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../Utils/UserContext";
 
 const navigation = [
     { name: 'Little Lemon', href: '/', current: true },
@@ -57,6 +59,8 @@ export default function Navbar() {
         setIsLoggedIn(false); // Update state to reflect logout
         window.location.href = '/'; // Redirect to home page
     };
+
+    const { user, isLoading } = useContext(UserContext);
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
@@ -126,6 +130,14 @@ export default function Navbar() {
                                 transition
                                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                             >
+                                <MenuItem>
+                                    <a
+                                        href="#"
+                                        className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+                                    >
+                                        {isLoading ? "Loading..." : user ? `Hi, ${user.fullName}` : "Hi, Guest"}
+                                    </a>
+                                </MenuItem>
                                 <MenuItem>
                                     <a
                                         href="#"

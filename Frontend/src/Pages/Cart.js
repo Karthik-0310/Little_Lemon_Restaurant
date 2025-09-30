@@ -1,5 +1,6 @@
 import React from "react";
 import { useCart } from "../CartContext";
+import "./CSS/Cart.css"
 
 const Cart = () => {
     const { cartItems, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
@@ -92,7 +93,7 @@ const Cart = () => {
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                 >
-                                                    <path d="M4.5 9h9" strokeWidth="1.6" strokeLinecap="round" />
+                                                    <path d="M4.5 9h9" strokeWidth="1.6" strokeLinecap="round"/>
                                                 </svg>
                                             </button>
 
@@ -116,7 +117,7 @@ const Cart = () => {
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                 >
-                                                    <path d="M9 4.5v9M4.5 9h9" strokeWidth="1.6" strokeLinecap="round" />
+                                                    <path d="M9 4.5v9M4.5 9h9" strokeWidth="1.6" strokeLinecap="round"/>
                                                 </svg>
                                             </button>
                                         </div>
@@ -131,6 +132,12 @@ const Cart = () => {
                         {/* Subtotal */}
                         <div className="flex justify-end text-2xl font-bold">
                             <span className="font-manrope">Subtotal: ${subtotal.toFixed(2)}</span>
+                        </div>
+
+                        <div className="button-container">
+                                <button className="checkout-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                    Checkout
+                                </button>
                         </div>
                     </>
                 )}
